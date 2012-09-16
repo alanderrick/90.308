@@ -61,13 +61,21 @@ public class SubscriptionPeriodTest {
     @Test
     public void testTotalMonths() {
         SubscriptionPeriod subscriptionPeriod = new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
-        int totalMonths = subscriptionPeriod.getTotalMonths();
-        long differenceInMonth = differenceInMonths(now, sixthMonthsFromNow);
+        int totalMonths;
+        totalMonths = subscriptionPeriod.getTotalMonths();
+        int differenceInMonth = differenceInMonths(now, sixthMonthsFromNow);
         assertEquals(totalMonths, differenceInMonth);
     }
 
 
     // TODO add a feature you would like to see in the subscriptionPeriod class and write a test for it here.
+    @Test
+    public void testTotalHours() {
+        SubscriptionPeriod subscriptionPeriod =  new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
+        int totalHours = subscriptionPeriod.getTotalHours();
+        long differenceInHours = (sixthMonthsFromNow.getTime().getTime() - now.getTime().getTime()) / (1000 * 60 * 60 );
+        assertEquals(totalHours, differenceInHours);
+    }
 
 
     // it is perfectly fine to have helper methods in test code.
