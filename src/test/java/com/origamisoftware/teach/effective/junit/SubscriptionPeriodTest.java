@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.Calendar;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * @author Spencer A Marks
@@ -63,18 +64,18 @@ public class SubscriptionPeriodTest {
         SubscriptionPeriod subscriptionPeriod = new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
         int totalMonths;
         totalMonths = subscriptionPeriod.getTotalMonths();
-        int differenceInMonth = differenceInMonths(now, sixthMonthsFromNow);
+        long differenceInMonth = differenceInMonths(now, sixthMonthsFromNow);
         assertEquals(totalMonths, differenceInMonth);
     }
 
 
     // TODO add a feature you would like to see in the subscriptionPeriod class and write a test for it here.
     @Test
-    public void testTotalHours() {
+    public void testTotalYears() {
         SubscriptionPeriod subscriptionPeriod =  new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
-        int totalHours = subscriptionPeriod.getTotalHours();
-        long differenceInHours = (sixthMonthsFromNow.getTime().getTime() - now.getTime().getTime()) / (1000 * 60 * 60 );
-        assertEquals(totalHours, differenceInHours);
+        int totalYears = subscriptionPeriod.getTotalYears();
+        long differenceInYears = (sixthMonthsFromNow.getTime().getTime() - now.getTime().getTime()) / (1000 * 60 * 60 * 24 * 12);
+        assertEquals(totalYears, differenceInYears);
     }
 
 

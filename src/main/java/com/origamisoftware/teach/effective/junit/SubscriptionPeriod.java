@@ -3,6 +3,7 @@ package com.origamisoftware.teach.effective.junit;
 import java.util.Calendar;
 import java.util.Date;
 
+
 /**
  * A simple Date Range Class
  *
@@ -48,12 +49,7 @@ public class SubscriptionPeriod {
      * @return
      */
     public int getTotalDays() {
-        // return 0;
-        int comparison;
-        int days;
-        comparison = endDate.compareTo(startDate);
-        days = comparison / (1000 * 60 * 60 * 24);  // get the number of days
-        return days;
+        return (int) ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
     }
 
     /**
@@ -62,23 +58,26 @@ public class SubscriptionPeriod {
      * @return
      */
     public int getTotalMonths() {
-        // return 0;
-        int comparison;
-        int months;
-        comparison = endDate.compareTo(startDate);
-        months = comparison / (1000 * 60 * 60 * 24 * 12); // gets the number of months
-        return months;
+        Calendar beginCalendar = Calendar.getInstance();
+        beginCalendar.setTime(startDate);
+        Calendar endingCalendar = Calendar.getInstance();
+        endingCalendar.setTime(endDate);
+
+        int months = endingCalendar.get(Calendar.MONTH) - beginCalendar.get(Calendar.MONTH);
+        int years = endingCalendar.get(Calendar.YEAR) - beginCalendar.get(Calendar.YEAR);
+        return months = ( months + years * 12);
     }
 
     /*  TODO add new functionality to the SubscriptionPeriod class here and write a test for it in the test class.
      *  This functionality can be as simple as you want. The goal is to give you practice writing a test and some functionality
      */
-    public int getTotalHours() {
-        // return 0;
-        int comparison;
-        int hours;
-        comparison = endDate.compareTo(startDate);
-        hours = comparison/(1000 * 60 * 60);    // get the number of hours
-        return hours;
+    public int getTotalYears() {
+        Calendar beginningCalendar = Calendar.getInstance();
+        beginningCalendar.setTime(startDate);
+        Calendar endingCalendar = Calendar.getInstance();
+        endingCalendar.setTime(endDate);
+
+        int years;
+        return years = (endingCalendar.get(Calendar.YEAR) - beginningCalendar.get(Calendar.YEAR));
     }
 }
