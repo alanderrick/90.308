@@ -15,6 +15,7 @@ public class SubscriptionPeriodTest {
 
     private Calendar now;
     private Calendar sixthMonthsFromNow;
+    private Calendar twoYearsFromNow;
 
     /**
      * This code is used to setup a known state or baseline
@@ -24,8 +25,12 @@ public class SubscriptionPeriodTest {
     public void setup() {
         // create a known state (also known as a baseline)
         now = Calendar.getInstance();
+
         sixthMonthsFromNow = Calendar.getInstance();
         sixthMonthsFromNow.add(Calendar.MONTH, 6);
+
+        twoYearsFromNow = Calendar.getInstance();
+        twoYearsFromNow.add(Calendar.YEAR, 2);
     }
 
     @Test
@@ -72,9 +77,9 @@ public class SubscriptionPeriodTest {
     // TODO add a feature you would like to see in the subscriptionPeriod class and write a test for it here.
     @Test
     public void testTotalYears() {
-        SubscriptionPeriod subscriptionPeriod =  new SubscriptionPeriod(now.getTime(), sixthMonthsFromNow.getTime());
+        SubscriptionPeriod subscriptionPeriod =  new SubscriptionPeriod(now.getTime(), twoYearsFromNow.getTime());
         int totalYears = subscriptionPeriod.getTotalYears();
-        long differenceInYears = (sixthMonthsFromNow.getTime().getTime() - now.getTime().getTime()) / (1000 * 60 * 60 * 24 * 12);
+        long differenceInYears = differenceInYears(now, twoYearsFromNow);
         assertEquals(totalYears, differenceInYears);
     }
 
@@ -95,6 +100,12 @@ public class SubscriptionPeriodTest {
         int startMonth = start.get(Calendar.MONTH);
         return (stopYear - startYear) * 12 + (stopMonth - startMonth);
 
+    }
+
+    private int differenceInYears(Calendar start, Calendar stop) {
+        int stopYear = stop.get(Calendar.YEAR);
+        int startYear = start.get(Calendar.YEAR);
+        return (stopYear - startYear);
     }
 
 

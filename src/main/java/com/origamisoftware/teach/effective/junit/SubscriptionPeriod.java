@@ -78,6 +78,7 @@ public class SubscriptionPeriod {
         endingCalendar.setTime(endDate);
 
         int years;
-        return years = (endingCalendar.get(Calendar.YEAR) - beginningCalendar.get(Calendar.YEAR));
+        years = (endingCalendar.get(Calendar.YEAR) - beginningCalendar.get(Calendar.YEAR));
+        return years;
     }
 }
